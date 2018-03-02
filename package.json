@@ -1,0 +1,17 @@
+{
+  "name": "gvenus",
+  "version": "1.0.0",
+  "description": "基于Vue的移动端组件库",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Vue",
+    "component",
+    "venus",
+    "plugin"
+  ],
+  "author": "gaoyuqian",
+  "license": "ISC"
+}
