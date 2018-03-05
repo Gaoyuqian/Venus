@@ -36,6 +36,7 @@
 
 */
 export default {
+  name: "VPopup",
   data() {
     return {
       showTest: false,

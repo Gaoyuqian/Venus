@@ -12,6 +12,7 @@
 </template>
 <script>
 export default {
+  name: "VSlide",
   data() {
     return {
       windowWidth: 0,

@@ -16,6 +16,7 @@
   建议所有子节点的width为100%;或使用组件【
 */
 export default {
+  name: "VModel",
   computed: {
     cls() {
       var cls = [];
@@ -57,7 +58,7 @@ export default {
       type: String
     },
     title: {
-      default: "11",
+      default: "默认标题",
       type: String
     }
   }
@@ -90,7 +91,7 @@ export default {
   // display: flex;
   // justify-content: flex-end;
 }
-.v-model-footer div{
+.v-model-footer div {
   background-color: red;
 }
 .v-model-panel {
@@ -103,6 +104,7 @@ export default {
   left: 0;
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
+  z-index: 99999999;
 }
 .v-model-body {
   background: #fff;

@@ -14,7 +14,7 @@
   this.$alert({text:String,canclose:Boolean})
  */
 export default {
-  name: "Valert", 
+  name: "VAlert",
   data() {
     return {
       text: "",
@@ -80,7 +80,7 @@ export default {
   overflow-wrap: wrap;
 }
 .v-alert-image {
-  background: url("../images/icon_attention.png");
+  background: url("../../images/icon_attention.png");
   background-size: contain;
   display: inline-block;
   height: 3rem;

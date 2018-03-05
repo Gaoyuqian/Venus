@@ -8,7 +8,7 @@
               <div class="v-picker-submit" @click='submitData()'>完成</div>
             </div>
             <div class="v-pick-body-box">
-              <pickbody v-for='key in data' :data='key' v-model='key.default' :key='keys'></pickbody>
+              <pickbody v-for='key in data' :data='key' v-model='key.default' :key='key.default'></pickbody>
             </div>
           </div>
         </div>
@@ -19,9 +19,10 @@
 /* @param array [{data:Object,default:String}]  data */
 /* @param Boolean show=True||False  show  */
 /* @return [param1,param2,param3....,paramN] {show:false}  model */
-import pickbody from "../picker/pickerbody";
-import popup from "../popup";
+import pickbody from "./pickerbody";
+import popup from "../popup/popup";
 export default {
+  name: "VPicker",
   components: { pickbody, popup },
   data() {
     return {

@@ -1,8 +1,8 @@
 {
   "name": "gvenus",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "基于Vue的移动端组件库",
-  "main": "main.js",
+  "main": "packages/src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

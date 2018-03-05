@@ -3,9 +3,10 @@
 <template>
   <button :disabled='disabled' :class="[cls]" @click='clickHandle'><span class='v-btn-span'><slot></slot></span></button>
 </template>
+
 <script>
 export default {
-  name:'Vbtn',
+  name: "VButton",
   methods: {
     clickHandle: function(evt) {
       this.$emit("click", evt);
@@ -37,13 +38,10 @@ export default {
 
       return cls;
     }
-  },
-  data() {
-    return {};
-  },
-  mounted() {}
+  }
 };
 </script>
+
 <style lang="scss" scoped>
 .v-btn {
   height: 2rem;
@@ -79,5 +77,3 @@ export default {
   border-radius: 50%;
 }
 </style>
-
-

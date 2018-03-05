@@ -10,6 +10,7 @@
   @method this.$message({'text':String,'type':String})
  */
 export default {
+  name: "VMEssage",
   data() {
     return {
       // time: "",

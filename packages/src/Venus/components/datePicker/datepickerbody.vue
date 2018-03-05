@@ -30,9 +30,6 @@ export default {
     getdata() {
       this.submit();
     },
-    distance(newVal) {
-      // console.log(newVal);
-    },
     data() {
       this.Mkey = Object.keys(this.data);
       this.Mdata = this.data[this.Mkey[0]];
@@ -61,12 +58,19 @@ export default {
             解决方案  一个是v-show   需要解决Cheight 的问题  
              一个是sessionStronge  拓展问题，
     */
-    if (sessionStorage.getItem("v_datepickerinfo") != "undefined") {
-      this.reData = JSON.parse(sessionStorage.getItem("v_datepickerinfo"));
+    if (sessionStorage.getItem("v_datepickerinfo" + this.uid) != "undefined") {
+      this.reData = JSON.parse(
+        sessionStorage.getItem("v_datepickerinfo" + this.uid)
+      );
     }
     this.init();
   },
-  props: { data: { type: Object }, getdata: { type: Boolean } },
+  props: {
+    data: { type: Object },
+    getdata: { type: Boolean },
+    uid: { type: Number },
+    def: {}
+  },
   methods: {
     setDate(time) {
       let toYear, toMouth, toDay, disValue;
@@ -77,10 +81,20 @@ export default {
           }
         }
       } else {
-        toYear = time || new Date().getFullYear();
-        toMouth = time || new Date().getMonth() + 1;
-        toDay = time || new Date().getDate();
+        toYear =
+          this.def != "null" && this.def != undefined
+            ? new Date(this.def).getFullYear()
+            : new Date().getFullYear();
+        toMouth =
+          this.def != "null" && this.def !== undefined
+            ? new Date(this.def).getMonth() + 1
+            : new Date().getMonth() + 1;
+        toDay =
+          this.def != "null" && this.def !== undefined
+            ? new Date(this.def).getDate()
+            : new Date().getDate();
       }
+
       switch (this.Mkey[0]) {
         case "year":
           this.distance =
@@ -105,7 +119,6 @@ export default {
         this.Cheight = this.Client.clientHeight; // clientheight = 300
         this.Iheight = //itemheight
           this.Cheight / this.$refs.scroll.children.length;
-        // !this.reData && this.setDate();
         this.setDate(this.reData);
       });
     },

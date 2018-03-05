@@ -8,6 +8,7 @@
 </template>
 <script>
 export default {
+  name: "VRadiu",
   data() {
     return {
       enter_animation: false,
@@ -30,7 +31,7 @@ export default {
       this.enter_animation = true;
       this.value_copy = !this.value_copy;
       this.$emit("input", this.value_copy);
-      evt&&evt.stopPropagation();
+      evt && evt.stopPropagation();
       setTimeout(() => {
         this.enter_animation = false;
       }, 500);
@@ -76,7 +77,7 @@ export default {
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  background:rgba(255, 255, 255, 1);;
+  background: rgba(255, 255, 255, 1);
   .v-rad-cli {
     display: inline-block;
     width: 50%;

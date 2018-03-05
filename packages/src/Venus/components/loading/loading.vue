@@ -16,6 +16,7 @@
 </template>
 <script>
 export default {
+  name: "VLoading",
   props: { size: { default: "large", type: String } },
   computed: {
     cls() {

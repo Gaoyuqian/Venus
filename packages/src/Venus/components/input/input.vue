@@ -45,10 +45,11 @@
 //校验考虑支持，下一版在做
 //做校验需要在校验成功之后 调用alertinfo组件显示信息
 //必填选填判断
-import alertInfo from "../components/alertInfo";
-import util from "../_tool/util";
+import Valert from "../../components/alert/alert";
+import util from "../../_tool/util";
 export default {
-  components: { alertInfo },
+  name: "VInput",
+  components: { Valert },
   props: {
     underline: { type: Boolean, default: false },
     begin: { type: String, default: "left" },
@@ -77,8 +78,7 @@ export default {
       default: false
     }
   },
-  mounted() {
-  },
+  mounted() {},
   data() {
     return {
       isNull: !!this.value,

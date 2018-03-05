@@ -8,17 +8,18 @@
             </div>
             <div class="box">
               <!-- <div @getdate='getdate' v-for='item in data' :data='data[item]'>{{item}}</div> -->
-               <pickerbody v-model='data' :getdata='getdata' @getdate='getdate' :key='val' v-for='(item,val) in data' :data='item' type='asdfa'></pickerbody>       
+               <pickerbody :def='def' :uid='_uid' v-model='data' :getdata='getdata' @getdate='getdate' :key='val' v-for='(item,val) in data' :data='item' type='asdfa'></pickerbody>       
             </div>
         </div>  
     </div>
   </popup>
 </template>
 <script>
-import popup from "../popup";
+import popup from "../popup/popup";
 import pickerbody from "./datepickerbody";
 export default {
   //拿到type之后 生成数据
+  name: "VDate",
   methods: {
     cancel() {
       this.$refs.popup.close();
@@ -34,10 +35,9 @@ export default {
       } else if (this.pushDataLock) {
         this.callBackData.push(aaa);
         if (this.callBackData.length >= this.data.length) {
-          // console.log(this.callBackData);
           this.pushDataLock = false;
           sessionStorage.setItem(
-            "v_datepickerinfo",
+            "v_datepickerinfo" + this._uid,
             JSON.stringify(this.callBackData)
           );
           this.$emit("input", this.callBackData);
@@ -46,7 +46,6 @@ export default {
       }
     },
     setYear(start = new Date(0).getFullYear(), now = new Date().getFullYear()) {
-      //向上兼容！！！
       const year = [];
       for (let item = start; item <= now; item++) {
         year.push(item);
@@ -54,7 +53,6 @@ export default {
       this.data.push({ year: year.reverse() });
     },
     setMonth() {
-      //向上兼容！！！
       this.setYear();
       const month = [];
       for (let item = 1; item <= 12; item++) {
@@ -124,7 +122,6 @@ export default {
         this.setDay();
         break;
     }
-
     this.popup = !this.popup ? this.$refs.popup : this.popup;
   },
   props: {
@@ -132,7 +129,8 @@ export default {
     show: { default: "" },
     part: {
       default: 5
-    }
+    },
+    def: {}
   },
   components: { popup, pickerbody }
 };

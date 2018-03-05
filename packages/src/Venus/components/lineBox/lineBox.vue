@@ -8,8 +8,7 @@
 
 <script>
 export default {
-    mounted(){
-    },
+  name: "VLinebox",
   props: {
     line: { default: "none", type: String },
     type: { defaule: "title", type: String },

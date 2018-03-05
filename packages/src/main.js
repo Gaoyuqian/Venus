@@ -1,38 +1,34 @@
-
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
-import Vue from 'vue'
 import '@/assets/sass/app.scss'
-import alertInfo from './Venus/components/alertInfo'
-import msg from './Venus/components/message'
-import picker from './Venus/components/picker/picker'
-import model from './Venus/components/model'
-import btna from './Venus/components/btna'
-import radiu from './Venus/components/radiu'
-import inputInfo from './Venus/components/inputInfo'
-import lineBox from './Venus/components/lineBox'
-import lineBoxGroup from './Venus/components/lineBoxGroup'
-import loading from './Venus/components/loading'
-import slide from './Venus/components/slide'
-const components= {
-  model,
-  btna,
-  radiu,
-  alertInfo,
-  inputInfo,
-  msg,
-  picker,
-  datepicker,
-  lineBox,
-  lineBoxGroup,
-  loading,
-  slide
-}
+import VAlert from './Venus/components/alert/index.js'
+import VMessage from './Venus/components/message/index.js'
+import VPicker from './Venus/components/picker/index.js'
+import VDate from './Venus/components/datepicker/index.js'
+import VModel from './Venus/components/modelPanel/index.js'
+import VButton from './Venus/components/button/index.js'
+import VRadiu from './Venus/components/radiu/index.js'
+import VInput from './Venus/components/input/index.js'
+import VLinebox from './Venus/components/lineBox/index.js'
+import VLineboxGroup from './Venus/components/lineBoxGroup/index.js'
+import VLoading from './Venus/components/loading/index.js'
+import VSlide from './Venus/components/slide/index.js'
 
-Vue.config.productionTip = false;
-const install = function(Vue){
-  components.map(component=>{
-      Vue.component(component.name,component)
+const install = function(Vue, opts = {}) {
+  const components= [
+    VButton,
+    VRadiu,
+    VInput,
+    VAlert,
+    VSlide,
+    VMessage,
+    VPicker,
+    VDate,
+    VModel,
+    VLinebox,
+    VLineboxGroup,
+    VLoading,
+  ]
+  components.forEach((Component) => {
+    Component.install(Vue)
   })
 
   Vue.prototype.$myMounted=function(name,obj){
@@ -43,32 +39,33 @@ const install = function(Vue){
   }
 
   Vue.prototype.$message = function(obj){
-    this.$myMounted(Vue.extend(msg),obj)
+    this.$myMounted(Vue.extend(VMessage),obj)
   }
   Vue.prototype.$alert = function(obj){
-    this.$myMounted(Vue.extend(alert),obj)
+    this.$myMounted(Vue.extend(VAlert),obj)
   }
   Vue.prototype.$picker = function(obj){
-    this.$myMounted(Vue.extend(picker),obj)  
+    this.$myMounted(Vue.extend(VPicker),obj)  
   }
 }
+
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
-module.exports = {
-  version:'0.0.9',
-  model,
-  btna,
-  radiu,
-  alertInfo,
-  inputInfo,
-  msg,
-  picker,
-  datepicker,
-  lineBox,
-  lineBoxGroup,
-  loading,
-  slide
-}
 
-module.exports.default = module.exports;
+export default  {
+  version:'0.0.9',
+  install,
+  VButton,
+  VRadiu,
+  VInput,
+  VAlert,
+  VSlide,
+  VMessage,
+  VPicker,
+  VDate,
+  VModel,
+  VLinebox,
+  VLineboxGroup,
+  VLoading,
+}
