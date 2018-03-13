@@ -9,7 +9,7 @@
 ## Quick Start 
 
 <pre><code> 
-    import Venus from 'gvenus'
+  import Venus from 'gvenus'
     
-    Vue.use(Element);
+  Vue.use(Element);
 </code></pre>

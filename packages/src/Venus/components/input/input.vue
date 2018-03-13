@@ -4,42 +4,6 @@
   <input :class='[cls]' :maxlength="max" @focus='beginEventHandel("focus")' @blur='beginEventHandel("blur")' :type='type' :value='value' @input='changeValue' :placeholder="placeholder">
 </div>
 </template>
-<style lang="scss" scoped>
-.v-input-box {
-  background: #fff;
-  display: flex;
-  white-space: nowrap;
-  align-items: center;
-  font-size: 32px;
-  padding: 0 20px;
-  .v-input-label {
-  }
-}
-.v-input-box-underline {
-  border: none;
-  border-bottom: 2px solid #888;
-}
-.v-input {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  border-radius: 0;
-  padding-left: 30px;
-}
-::-webkit-input-placeholder {
-  color: #888888;
-  cursor: default;
-  font-size: 24px;
-}
-.v-input-right {
-  text-align: right;
-}
-.v-input-box-isnull {
-  border-color: red;
-}
-</style>
-
 <script>
 //暂不支持前面插入图片吧 以后支持
 //校验考虑支持，下一版在做
@@ -132,3 +96,36 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.v-input-box {
+  background: #fff;
+  display: flex;
+  white-space: nowrap;
+  align-items: center;
+  font-size: 32px;
+  padding: 0 20px;
+}
+.v-input-box-underline {
+  border: none;
+  border-bottom: 2px solid #888;
+}
+.v-input {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  border-radius: 0;
+  padding-left: 30px;
+}
+::-webkit-input-placeholder {
+  color: #888888;
+  cursor: default;
+  font-size: 24px;
+}
+.v-input-right {
+  text-align: right;
+}
+.v-input-box-isnull {
+  border-color: red;
+}
+</style>
