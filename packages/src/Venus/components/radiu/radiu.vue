@@ -51,6 +51,7 @@ export default {
         ? cls.push(`v-rad-cli-right`)
         : cls.push(`v-rad-cli-left`);
       return cls;
+      
     }
   },
   mounted() {

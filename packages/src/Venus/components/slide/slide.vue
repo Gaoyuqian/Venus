@@ -72,7 +72,7 @@ export default {
               this.$refs.select.childNodes.length - 1
             ].classList.add("selected");
           } else {
-            console.log(
+            console.logLock(
               this.distance,
               Math.round(this.distance / -this.windowWidth) - 1
             );
@@ -102,12 +102,12 @@ export default {
     },
     transitionend(evt) {
       if (this.index <= 0 || this.index >= this.length - 1) {
-        console.log("animationend");
+        console.logLock("animationend");
         this.looping();
       }
       this.index = -parseInt(this.distance / this.windowWidth);
       //回传给父组件 当前index值 用于父组件获取事件
-      console.log(`第${this.index}个`, new Date());
+      console.logLock(`第${this.index}个`, new Date());
     },
 
     click(evt) {
@@ -126,7 +126,7 @@ export default {
     touchend(evt) {
       //负责校对位置
       clearTimeout(this.timeout);
-      console.log("end", this.timeout);
+      console.logLock("end", this.timeout);
       this.removeEvent();
       if (!this.timeout) {
         this.hack(this.distance);
@@ -138,7 +138,7 @@ export default {
       evt && evt.preventDefault() && evt.stopPropagation();
     },
     touchmove(evt) {
-      console.log("move");
+      console.logLock("move");
       evt && evt.preventDefault() && evt.stopPropagation();
       this.$refs.item.addEventListener("touchend", this.touchend);
       // 老规矩  负责移动动画
@@ -153,7 +153,7 @@ export default {
       }
     },
     animation(distance, time) {
-      console.log("animation");
+      console.logLock("animation");
       const $item = this.$refs.item;
       this.distance = distance;
       this.changeSelect();
@@ -170,7 +170,7 @@ export default {
     },
     over(x, dom) {
       //判断是否出界
-      console.log("over");
+      console.logLock("over");
       const width = dom.offsetWidth;
       const leftBorder = dom.offsetLeft;
       const rightBorder = width + leftBorder;
@@ -179,7 +179,7 @@ export default {
     looping(offset = 0) {
       // 负责将出界的滑动 重新定位到对应的index上
       if (this.index <= 0) {
-        console.log("左划出界,即将开始修正");
+        console.logLock("左划出界,即将开始修正");
         this.animation(
           (-this.windowWidth + offset) * (this.data.length - 2),
           0
@@ -189,36 +189,36 @@ export default {
       if (this.index >= this.length - 1) {
         this.animation((-this.windowWidth + offset) * 1, 0);
         this.distanceCopy = this.distance;
-        console.log("右划出界,即将开始修正");
+        console.logLock("右划出界,即将开始修正");
       }
     },
     //修改左右滑的判断逻辑   根据distance的增长值判断
     hack(distance) {
-      console.log("hack");
+      console.logLock("hack");
       if (distance > this.distanceCopy) {
         this.matchDistance(0.3, "left");
-        console.log("左滑");
+        console.logLock("左滑");
       } else {
         this.matchDistance(0.3, "right");
-        console.log("右滑");
+        console.logLock("右滑");
       }
       this.distanceCopy = this.distance;
     },
     matchDistance(basic, fangxiang) {
-      console.log("match");
+      console.logLock("match");
       const P = fangxiang === "right" ? -1 : 1;
       if (
         this.distance - this.distanceCopy >
         this.windowWidth * (basic + this.index - 1)
       ) {
         this.distance = this.distanceCopy + P * this.windowWidth;
-        console.log("正常右滑");
+        console.logLock("正常右滑");
       } else if (
         (this.distanceCopy - this.distance) * P <
         -(this.windowWidth * basic)
       ) {
         this.distance = this.distanceCopy + P * this.windowWidth;
-        console.log("正常左滑");
+        console.logLock("正常左滑");
       } else {
         this.distance = this.distanceCopy;
       }
@@ -248,7 +248,7 @@ export default {
     },
     createTimeout(time) {
       if ((this.autoloop && this.autoloop != "false") || this.autoloop === "") {
-        console.log("create");
+        console.logLock("create");
         const animaTime = 1;
         this.removeEvent();
         if (!this._isBeingDestroyed) {
@@ -308,7 +308,7 @@ export default {
   },
 
   mounted() {
-    console.log("mounted", this.timeout, 1);
+    console.logLock("mounted", this.timeout, 1);
     this.windowWidth = this.$refs.box.clientWidth;
     this.length = this.$refs.item.children.length; //改成 props中data的长度
     this.init();
@@ -317,7 +317,7 @@ export default {
       this.createTimeout(this.checktime < 3000 ? 3000 : this.checktime);
     });
     this.pageIsOnLooking();
-    console.log(this.autoloop, this.checktime);
+    console.logLock(this.autoloop, this.checktime);
   }
 };
 </script>

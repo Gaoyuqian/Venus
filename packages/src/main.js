@@ -49,6 +49,12 @@ const install = function(Vue, opts = {}) {
   }
 }
 
+var consoleLock = false;
+window.console.logLock = function(context){
+  if(consoleLock){
+    console.log(context);    
+  }
+}
 if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
